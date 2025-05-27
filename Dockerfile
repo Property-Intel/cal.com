@@ -29,7 +29,7 @@ COPY packages ./packages
 COPY tests ./tests
 
 RUN yarn config set httpTimeout 1200000
-RUN npx turbo prune --scope=@web --scope=@trpc --docker
+RUN npx turbo prune --scope=@calcom/web --scope=@calcom/trpc --docker
 RUN yarn install
 RUN yarn db-deploy
 RUN yarn --cwd packages/prisma seed-app-store
