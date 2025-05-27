@@ -15,7 +15,7 @@ ENV NEXT_PUBLIC_WEBAPP_URL=http://NEXT_PUBLIC_WEBAPP_URL_PLACEHOLDER \
     NEXT_PUBLIC_LICENSE_CONSENT=$NEXT_PUBLIC_LICENSE_CONSENT \
     CALCOM_TELEMETRY_DISABLED=$CALCOM_TELEMETRY_DISABLED \
     DATABASE_URL=$DATABASE_URL \
-    DATABASE_DIRECT_URL=$DATABASE_URL \
+    DATABASE_DIRECT_URL=${DATABASE_URL} \
     NEXTAUTH_SECRET=${NEXTAUTH_SECRET} \
     CALENDSO_ENCRYPTION_KEY=${CALENDSO_ENCRYPTION_KEY} \
     NODE_OPTIONS=--max-old-space-size=${MAX_OLD_SPACE_SIZE} \
@@ -34,9 +34,9 @@ RUN yarn install
 RUN yarn db-deploy
 RUN yarn --cwd packages/prisma seed-app-store
 # Build and make embed servable from web/public/embed folder
-RUN yarn workspace @trpc run build
-RUN yarn --cwd packages/embeds/embed-core workspace @embed-core run build
-RUN yarn --cwd apps/web workspace @web run build
+RUN yarn workspace @calcom/trpc run build
+RUN yarn --cwd packages/embeds/embed-core workspace @calcom/embed-core run build
+RUN yarn --cwd apps/web workspace @calcom/web run build
 
 # RUN yarn plugin import workspace-tools && \
 #     yarn workspaces focus --all --production
