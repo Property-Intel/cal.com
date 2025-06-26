@@ -41,7 +41,7 @@ RUN set -eux; \
 
 # Final stage
 FROM base
-WORKDIR /app
+WORKDIR /calcom
 
 # Install packages needed for deployment
 RUN apt-get update -qq && \
@@ -49,23 +49,23 @@ RUN apt-get update -qq && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy built application
-COPY --from=build /app/package.json ./package.json
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/apps/api/package.json ./apps/api/package.json
-COPY --from=build /app/apps/api/next-i18next.config.js ./apps/api/next-i18next.config.js
-COPY --from=build /app/apps/api/next.config.js ./apps/api/next.config.js
-COPY --from=build /app/apps/api/tsconfig.json ./apps/api/tsconfig.json
-COPY --from=build /app/apps/api/.next ./apps/api/.next
-COPY --from=build /app/apps/api/.turbo ./apps/api/.turbo
-COPY --from=build /app/turbo.json ./turbo.json
-COPY --from=build /app/yarn.lock ./yarn.lock
-COPY --from=build /app/packages/config ./packages/config
-COPY --from=build /app/packages/tsconfig ./packages/tsconfig
-COPY --from=build /app/packages/types ./packages/types
-COPY --from=build /app/apps/web/next.config.js ./apps/web/next.config.js
-COPY --from=build /app/apps/web/next-i18next.config.js ./apps/web/next-i18next.config.js
-COPY --from=build /app/apps/web/public/static/locales ./apps/web/public/static/locales
-COPY --from=build /app/apps/web/package.json ./apps/web/package.json
+COPY --from=build /calcom/package.json ./package.json
+COPY --from=build /calcom/node_modules ./node_modules
+COPY --from=build /calcom/apps/api/package.json ./apps/api/package.json
+COPY --from=build /calcom/apps/api/next-i18next.config.js ./apps/api/next-i18next.config.js
+COPY --from=build /calcom/apps/api/next.config.js ./apps/api/next.config.js
+COPY --from=build /calcom/apps/api/tsconfig.json ./apps/api/tsconfig.json
+COPY --from=build /calcom/apps/api/.next ./apps/api/.next
+COPY --from=build /calcom/apps/api/.turbo ./apps/api/.turbo
+COPY --from=build /calcom/turbo.json ./turbo.json
+COPY --from=build /calcom/yarn.lock ./yarn.lock
+COPY --from=build /calcom/packages/config ./packages/config
+COPY --from=build /calcom/packages/tsconfig ./packages/tsconfig
+COPY --from=build /calcom/packages/types ./packages/types
+COPY --from=build /calcom/apps/web/next.config.js ./apps/web/next.config.js
+COPY --from=build /calcom/apps/web/next-i18next.config.js ./apps/web/next-i18next.config.js
+COPY --from=build /calcom/apps/web/public/static/locales ./apps/web/public/static/locales
+COPY --from=build /calcom/apps/web/package.json ./apps/web/package.json
 # Expose port 80
 EXPOSE 80
 
