@@ -7,7 +7,7 @@ FROM node:${NODE_VERSION}-slim as base
 ARG DATABASE_URL
 
 # Next.js/Prisma app lives here
-WORKDIR /app
+WORKDIR /calcom
 
 # Set production environment
 ENV NODE_ENV="production" \
